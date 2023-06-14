@@ -52,5 +52,22 @@ public class FileManager {
         }
         
     }
-    
+
+    public static void showAllBooks() {
+        if (bookArrayList.isEmpty()) {
+            System.out.println("No books found.");
+        } else {
+            System.out.println("All Books:");
+            for (Object object : bookArrayList) {
+                Book book = (Book) object;
+                System.out.println("ID: " + book.getId());
+                System.out.println("Title: " + book.getTittle());
+                System.out.println("Author: " + book.getAuthor());
+                System.out.println("Publication Year: " + book.getpublicationYear());
+                System.out.println("Editorial: " + book.getEditorial());
+                System.out.println("Publication City: " + book.getPublicationCity());
+                System.out.println("-------------------");
+            }
+        }
+    }
 }

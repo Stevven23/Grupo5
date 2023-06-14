@@ -39,6 +39,7 @@ public class MainMenu {
                 FileManager.askForData();
                 break;
             case 2:
+                FileManager.showAllBooks();
                 break;
             case 3:
                 optionForReturn = 3;

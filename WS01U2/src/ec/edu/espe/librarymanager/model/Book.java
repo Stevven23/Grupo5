@@ -24,6 +24,15 @@ public class Book implements Serializable {
         this.title = title;
         this.publicationCity = publicationCity;
     }
+    public void displayBookDetails() {
+        System.out.println("Book Details:");
+        System.out.println("ID: " + id);
+        System.out.println("Title: " + title);
+        System.out.println("Author: " + author);
+        System.out.println("Publication Year: " + publicationYear);
+        System.out.println("Editorial: " + editorial);
+        System.out.println("Publication City: " + publicationCity);
+    }
     
     public int getId(){
         return id;
