@@ -38,25 +38,37 @@ public class FileManager {
         System.out.println("Insert the Publication City of the Book: ");
         String publicationCity = dataIn.next();
         
+        loadBook();
         addBook(id, publicationYear, title, author, editorial, publicationCity);
         
     }
     
-    public static void addBook(int id, int publicationYear, String title, String author, String editorial, String publicationCity) throws IOException{
-        
+    public static void addBook(int id, int publicationYear, String title, String author, String editorial,
+        String publicationCity) throws IOException {
         Book book = new Book(id, publicationYear, title, author, editorial, publicationCity);
         bookArrayList.add(book);
-        
-       try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("book.dat"))){
-           outputStream.writeObject(bookArrayList);
-          System.out.println("El objeto ha sido guardado en objecto.dat");
+
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("book.dat"))) {
+            outputStream.writeObject(bookArrayList);
+            System.out.println("El objeto ha sido guardado en objecto.dat");
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo: " + e.getMessage());
         }
-        
+    }
+        public static void loadBook() {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("book.dat"))) {
+            ArrayList<Object> existingBooks = (ArrayList<Object>) inputStream.readObject();
+            if (existingBooks != null) {
+                bookArrayList.addAll(existingBooks);
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Error loading books from file: " + e.getMessage());
+        }
     }
 
     public static void showAllBooks() throws FileNotFoundException, IOException {
+        
+        
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("book.dat"))){
             ArrayList<Object> bookArrayList = (ArrayList<Object>) inputStream.readObject();
             
@@ -64,6 +76,7 @@ public class FileManager {
                 System.out.println("No books found.");
             } else {
                 System.out.println("All Books:");
+                System.out.println("-----------------------");
                 for (Object object : bookArrayList) {
                     Book book = (Book) object;
                     System.out.println("ID: " + book.getId());
