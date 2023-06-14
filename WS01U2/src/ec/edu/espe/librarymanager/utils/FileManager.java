@@ -2,8 +2,11 @@
 package ec.edu.espe.librarymanager.utils;
 
 import ec.edu.espe.librarymanager.model.Book;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -53,21 +56,27 @@ public class FileManager {
         
     }
 
-    public static void showAllBooks() {
-        if (bookArrayList.isEmpty()) {
-            System.out.println("No books found.");
-        } else {
-            System.out.println("All Books:");
-            for (Object object : bookArrayList) {
-                Book book = (Book) object;
-                System.out.println("ID: " + book.getId());
-                System.out.println("Title: " + book.getTittle());
-                System.out.println("Author: " + book.getAuthor());
-                System.out.println("Publication Year: " + book.getpublicationYear());
-                System.out.println("Editorial: " + book.getEditorial());
-                System.out.println("Publication City: " + book.getPublicationCity());
-                System.out.println("-------------------");
+    public static void showAllBooks() throws FileNotFoundException, IOException {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("book.dat"))){
+            ArrayList<Object> bookArrayList = (ArrayList<Object>) inputStream.readObject();
+            
+            if (bookArrayList.isEmpty()) {
+                System.out.println("No books found.");
+            } else {
+                System.out.println("All Books:");
+                for (Object object : bookArrayList) {
+                    Book book = (Book) object;
+                    System.out.println("ID: " + book.getId());
+                    System.out.println("Title: " + book.getTittle());
+                    System.out.println("Author: " + book.getAuthor());
+                    System.out.println("Publication Year: " + book.getpublicationYear());
+                    System.out.println("Editorial: " + book.getEditorial());
+                    System.out.println("Publication City: " + book.getPublicationCity());
+                    System.out.println("-------------------");
+                }
             }
+        }   catch (IOException | ClassNotFoundException e){
+                System.out.println("Error reading the file: " + e.getMessage());
         }
     }
 }
