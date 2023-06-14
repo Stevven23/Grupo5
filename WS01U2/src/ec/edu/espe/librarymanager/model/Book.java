@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ec.edu.espe.librarymanager.model;
 
 import java.io.Serializable;
@@ -12,20 +9,20 @@ import java.io.Serializable;
  */
 public class Book implements Serializable {
     
-    public static int id;
-    public static int publicationYear;
-    public static String title;
-    public static String author;
-    public static String editorial;
-    public static String publicationCity;
+    private int id;
+    private int publicationYear;
+    private String title;
+    private String author;
+    private String editorial;
+    private String publicationCity;
     
-    public static void Book(int id, int publicationYear, String title, String author, String editorial, String publicationCity){
-        Book.id = id;
-        Book.publicationYear = publicationYear;
-        Book.editorial = editorial;
-        Book.author = author;
-        Book.title = title;
-        Book.publicationCity = publicationCity;
+    public Book(int id, int publicationYear, String title, String author, String editorial, String publicationCity){
+        this.id = id;
+        this.publicationYear = publicationYear;
+        this.editorial = editorial;
+        this.author = author;
+        this.title = title;
+        this.publicationCity = publicationCity;
     }
     
     public int getId(){
