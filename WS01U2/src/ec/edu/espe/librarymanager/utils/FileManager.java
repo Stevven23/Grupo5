@@ -48,7 +48,7 @@ public class FileManager {
         Book book = new Book(id, publicationYear, title, author, editorial, publicationCity);
         bookArrayList.add(book);
 
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("book.dat"))) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("data\\book.dat"))) {
             outputStream.writeObject(bookArrayList);
             System.out.println("El objeto ha sido guardado en objecto.dat");
         } catch (IOException e) {
@@ -56,7 +56,7 @@ public class FileManager {
         }
     }
         public static void loadBook() {
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("book.dat"))) {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("data\\book.dat"))) {
             ArrayList<Object> existingBooks = (ArrayList<Object>) inputStream.readObject();
             if (existingBooks != null) {
                 bookArrayList.addAll(existingBooks);
@@ -69,7 +69,7 @@ public class FileManager {
     public static void showAllBooks() throws FileNotFoundException, IOException {
         
         
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("book.dat"))){
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("data\\book.dat"))){
             ArrayList<Object> bookArrayList = (ArrayList<Object>) inputStream.readObject();
             
             if (bookArrayList.isEmpty()) {
