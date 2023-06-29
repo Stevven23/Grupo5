@@ -14,6 +14,8 @@ public class Book {
     private String author;
     private String dateOfPublication;
     
+    
+    
     public Book(int id, String title, String author, String dateOfPublication) {
         this.id = id;
         this.title = title;

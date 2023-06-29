@@ -15,7 +15,7 @@ import java.util.Scanner;
  *
  * @author PabloEZurita
  */
-public class Menu {
+public class FarmSystem {
     
     private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
@@ -43,7 +43,6 @@ public class Menu {
     
     
     private static void quickClass(){
-      // Replace the placeholder with your MongoDB deployment's connection string
         String uri = "mongodb+srv://pzurita:pzurita@cluster0.ohfzkul.mongodb.net/?retryWrites=true&w=majority";
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
